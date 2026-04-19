@@ -1,0 +1,16 @@
+{
+  "name": "스마트 계산기",
+  "short_name": "계산기",
+  "start_url": "./calculator.html",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#1a73e8",
+  "icons": [
+    {
+      "src": "assets/app-icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

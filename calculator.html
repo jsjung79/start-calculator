@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스마트 계산기</title>
+    
+    <!-- PWA / iOS App Settings -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="스마트 계산기">
+    <link rel="apple-touch-icon" href="assets/app-icon.png">
+    
+    <link rel="stylesheet" href="calculator.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator">
+            <!-- Header -->
+            <div class="calc-header">
+                <button class="icon-btn theme-toggle" title="테마 변경"><i class="ph ph-moon"></i></button>
+                <div class="header-actions">
+                    <button class="icon-btn split-toggle" title="더치페이 계산"><i class="ph ph-users"></i></button>
+                    <button class="icon-btn history-toggle" title="계산 기록"><i class="ph ph-clock-counter-clockwise"></i></button>
+                </div>
+            </div>
+
+            <!-- Display -->
+            <div class="display">
+                <div class="previous-operand" id="previous-operand"></div>
+                <div class="current-operand" id="current-operand">0</div>
+            </div>
+
+            <!-- Keypad -->
+            <div class="keypad">
+                <button class="btn btn-action" data-action="clear">AC</button>
+                <button class="btn btn-action" data-action="delete"><i class="ph ph-backspace"></i></button>
+                <button class="btn btn-action" data-action="percent">%</button>
+                <button class="btn btn-operator" data-operator="÷">÷</button>
+
+                <button class="btn btn-number" data-number="7">7</button>
+                <button class="btn btn-number" data-number="8">8</button>
+                <button class="btn btn-number" data-number="9">9</button>
+                <button class="btn btn-operator" data-operator="×">×</button>
+
+                <button class="btn btn-number" data-number="4">4</button>
+                <button class="btn btn-number" data-number="5">5</button>
+                <button class="btn btn-number" data-number="6">6</button>
+                <button class="btn btn-operator" data-operator="-">−</button>
+
+                <button class="btn btn-number" data-number="1">1</button>
+                <button class="btn btn-number" data-number="2">2</button>
+                <button class="btn btn-number" data-number="3">3</button>
+                <button class="btn btn-operator" data-operator="+">+</button>
+
+                <button class="btn btn-number btn-zero" data-number="0">0</button>
+                <button class="btn btn-number" data-number=".">.</button>
+                <button class="btn btn-equals" data-action="equals">=</button>
+            </div>
+
+            <!-- Split Bill Panel -->
+            <div class="split-panel" id="split-panel">
+                <div class="split-header">
+                    <h3>더치페이</h3>
+                    <button class="icon-btn close-split"><i class="ph ph-x"></i></button>
+                </div>
+                <div class="split-content">
+                    <div class="input-group">
+                        <label>총 결제 금액 (원)</label>
+                        <input type="number" id="split-total" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label>인원 수 (명)</label>
+                        <div class="counter">
+                            <button id="split-minus"><i class="ph ph-minus"></i></button>
+                            <input type="number" id="split-people" value="2" min="1">
+                            <button id="split-plus"><i class="ph ph-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="split-result-box">
+                        <span class="label">1인당 금액</span>
+                        <div class="amount-wrap">
+                            <span class="amount" id="split-result">0</span>
+                            <span class="currency">원</span>
+                        </div>
+                        <p class="round-notice">※ 10원 단위로 올림 처리됨</p>
+                    </div>
+                    <button class="primary-btn" id="split-copy"><i class="ph ph-copy"></i> 결과 복사하기</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Panel -->
+        <div class="history-panel" id="history-panel">
+            <div class="history-header">
+                <h3>계산 기록</h3>
+                <button class="icon-btn close-history"><i class="ph ph-x"></i></button>
+            </div>
+            <ul class="history-list" id="history-list"></ul>
+            <button class="clear-history-btn" id="clear-history-btn">기록 삭제</button>
+        </div>
+    </div>
+    <script src="calculator.js"></script>
+</body>
+</html>
